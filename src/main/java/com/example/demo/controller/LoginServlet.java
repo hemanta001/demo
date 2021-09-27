@@ -1,4 +1,7 @@
-package com.example.demo;
+package com.example.demo.controller;
+
+import com.example.demo.model.User;
+import com.example.demo.service.UserService;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,17 +24,16 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String email=request.getParameter("email");
-        String password=request.getParameter("password");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         System.out.println(email);
         System.out.println(password);
-
-        if(email.equals("rockingguyheman.hg@gmail.com") && password.equals("hem123...")){
+        User user = new UserService().readUserByEmailAndPassword(email, password);
+        if (user != null) {
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     "/WEB-INF/home/home.jsp");
             dispatcher.forward(request, response);
-        }
-        else{
+        } else {
             response.sendRedirect("/demo_war_exploded");
         }
 
