@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -136,6 +137,10 @@
 </head>
 <body>
 <div class="container">
+    <c:if test="${message!=null}">
+        <h1>Message: ${message}</h1>
+    </c:if>
+    <c:remove var="message" scope="session" />
     <form action="/demo_war_exploded/login" method="post">
         <div class="row">
 <%--            <h2 style="text-align:center">Login with Social Media or Manually</h2>--%>

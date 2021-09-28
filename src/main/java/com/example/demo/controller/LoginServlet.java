@@ -34,6 +34,7 @@ public class LoginServlet extends HttpServlet {
                     "/WEB-INF/home/home.jsp");
             dispatcher.forward(request, response);
         } else {
+            request.getSession().setAttribute("message", "invalid email or password");
             response.sendRedirect("/demo_war_exploded");
         }
 
