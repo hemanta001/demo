@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserService {
 
@@ -33,6 +35,29 @@ public class UserService {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public List<User> readUsers() {
+        List<User> userList = new ArrayList<>();
+        try {
+            String query = "select * from user";
+            Connection connection = new DatabaseConnection().connectToDB();
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet rs = preparedStatement.executeQuery();
+            User user;
+            while (rs.next()) {
+                user = new User();
+                user.setFirstName(rs.getString("firstName"));
+                user.setLastName(rs.getString("lastName"));
+                user.setEmail(rs.getString("email"));
+                user.setUsername(rs.getString("username"));
+                userList.add(user);
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return userList;
     }
 
 }

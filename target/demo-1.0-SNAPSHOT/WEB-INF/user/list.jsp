@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: deerholdnepal
@@ -24,37 +25,37 @@
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="/demo_war_exploded/user" methods="get">User</a></li>
-            <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li>
+            <li><a href="#">Book</a></li>
+            <li><a href="#">Requested Book</a></li>
         </ul>
     </div>
 </nav>
 <div class="container">
+    <a class="btn btn-primary" href="#" role="button">Add</a>
     <h2>User List</h2>
     <table class="table">
         <thead>
         <tr>
+            <th>S.N.</th>
             <th>Firstname</th>
             <th>Lastname</th>
             <th>Email</th>
+            <th>Username</th>
+            <th colspan="2">Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-        </tr>
-        <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-        </tr>
-        <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-        </tr>
+        <c:forEach var="user" items="${userList }" varStatus="counter">
+            <tr>
+                <td>${counter.count}</td>
+                <td>${user.getFirstName()}</td>
+                <td>${user.getLastName()}</td>
+                <td>${user.getEmail()}</td>
+                <td>${user.getUsername()}</td>
+                <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
+                <td><a class="btn btn-danger" href="#" role="button">Delete</a></td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
