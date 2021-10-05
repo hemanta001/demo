@@ -18,16 +18,31 @@ public class UserServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        UserService userService = new UserService();
-        List<User> userList = userService.readUsers();
-        request.setAttribute("userList", userList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher(
-                "/WEB-INF/user/list.jsp");
-        dispatcher.forward(request, response);
+        String page = request.getParameter("page");
+        if (page.equalsIgnoreCase("list")) {
+            UserService userService = new UserService();
+            List<User> userList = userService.readUsers();
+            request.setAttribute("userList", userList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    "/WEB-INF/user/list.jsp");
+            dispatcher.forward(request, response);
+        } else if (page.equalsIgnoreCase("add")) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher(
+                    "/WEB-INF/user/add.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        User user = new User();
+        user.setFirstName(request.getParameter("firstName"));
+        user.setLastName(request.getParameter("lastName"));
+        user.setEmail(request.getParameter("email"));
+        user.setUsername(request.getParameter("username"));
+        user.setPassword(request.getParameter("password"));
+        UserService userService=new UserService();
+        userService.insertUser(user);
+        response.sendRedirect("/demo_war_exploded/user?page=list");
     }
 
     public void destroy() {

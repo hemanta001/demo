@@ -24,14 +24,14 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="/demo_war_exploded/user" methods="get">User</a></li>
+            <li><a href="/demo_war_exploded/user?page=list" methods="get">User</a></li>
             <li><a href="#">Book</a></li>
             <li><a href="#">Requested Book</a></li>
         </ul>
     </div>
 </nav>
 <div class="container">
-    <a class="btn btn-primary" href="#" role="button">Add</a>
+    <a class="btn btn-primary" href="/demo_war_exploded/user?page=add" role="button">Add</a>
     <h2>User List</h2>
     <table class="table">
         <thead>
