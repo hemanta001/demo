@@ -25,7 +25,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
-            <li><a href="/demo_war_exploded/user" methods="get">User</a></li>
+            <li><a href="/demo_war_exploded/user?page=list" methods="get">User</a></li>
             <li><a href="#">Book</a></li>
             <li><a href="#">Requested Book</a></li>
         </ul>
