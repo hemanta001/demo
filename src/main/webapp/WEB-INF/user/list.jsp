@@ -41,6 +41,7 @@
             <th>Lastname</th>
             <th>Email</th>
             <th>Username</th>
+            <th>Password</th>
             <th colspan="2">Action</th>
         </tr>
         </thead>
@@ -52,7 +53,8 @@
                 <td>${user.getLastName()}</td>
                 <td>${user.getEmail()}</td>
                 <td>${user.getUsername()}</td>
-                <td><a class="btn btn-primary" href="#" role="button">Edit</a></td>
+                <td>${user.getPassword()}</td>
+                <td><a class="btn btn-primary" href="/demo_war_exploded/user?id=${user.getId()}&page=edit" role="button">Edit</a></td>
                 <td><a class="btn btn-danger" href="#" role="button">Delete</a></td>
             </tr>
         </c:forEach>
