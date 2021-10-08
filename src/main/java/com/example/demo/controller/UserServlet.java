@@ -38,7 +38,13 @@ public class UserServlet extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher(
                     "/WEB-INF/user/add.jsp");
             dispatcher.forward(request, response);
+        } else if (page.equalsIgnoreCase("delete")) {
+            Long id = Long.parseLong(request.getParameter("id"));
+            UserService userService = new UserService();
+            userService.deleteUserById(id);
+            response.sendRedirect("/demo_war_exploded/user?page=list");
         }
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -50,13 +56,12 @@ public class UserServlet extends HttpServlet {
         user.setEmail(request.getParameter("email"));
         user.setUsername(request.getParameter("username"));
         user.setPassword(request.getParameter("password"));
-        if(page.equalsIgnoreCase("update")){
+        if (page.equalsIgnoreCase("update")) {
             Long id = Long.parseLong(request.getParameter("id"));
             user.setId(id);
             userService.updateUser(user);
-        }
-        else
-        userService.insertUser(user);
+        } else
+            userService.insertUser(user);
 
         response.sendRedirect("/demo_war_exploded/user?page=list");
     }

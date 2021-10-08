@@ -83,6 +83,19 @@ public class UserService {
         return userList;
     }
 
+    public void deleteUserById(Long id) {
+        try {
+            String query = "delete from user where id=?";
+            Connection connection = new DatabaseConnection().connectToDB();
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setLong(1, id);
+            preparedStmt.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void updateUser(User user) {
         try {
             String query = "update user set firstName = ?,lastName=?,email=?,username=?,password=? where id = ?";

@@ -55,7 +55,7 @@
                 <td>${user.getUsername()}</td>
                 <td>${user.getPassword()}</td>
                 <td><a class="btn btn-primary" href="/demo_war_exploded/user?id=${user.getId()}&page=edit" role="button">Edit</a></td>
-                <td><a class="btn btn-danger" href="#" role="button">Delete</a></td>
+                <td><a class="btn btn-danger" href="/demo_war_exploded/user?id=${user.getId()}&page=delete" role="button">Delete</a></td>
             </tr>
         </c:forEach>
         </tbody>
